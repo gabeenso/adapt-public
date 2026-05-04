@@ -1612,13 +1612,10 @@ footer {
     <p>Tell us a little about you. We'll be in touch within 1 business day to set up a 30-minute alignment call.</p>
   </div>
   <div class="partner-modal-body" id="partner-modal-body">
-    <!-- Pipedrive Web Form — injected lazily on modal open by openPartnerModal().
-         Form ID: 31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf
-         The CTA's data-cta value is appended as ?source=<value> to the form URL.
-         Pipedrive will capture this on submission only if the form has a custom
-         field configured to accept URL-parameter prefill — see Pipedrive form
-         designer → Field settings → Pre-fill from URL parameter. -->
-    <div id="pipedrive-form-mount"></div>
+    <!-- Pipedrive Web Form — rendered once on page load by the loader script.
+         Modal open/close just toggles visibility; the form stays mounted. -->
+    <div class="pipedriveWebForms" data-pd-webforms="https://webforms.pipedrive.com/f/31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf"></div>
+    <script src="https://webforms.pipedrive.com/f/loader" async></script>
   </div>
 </dialog>
 
@@ -1636,41 +1633,12 @@ footer {
 })();
 
 // ===================== EOI MODAL =====================
-// Lazily injects the Pipedrive Web Form embed on first open and re-injects
-// when the CTA source changes, so each lead carries its CTA attribution
-// via a ?source=<value> URL parameter on the form URL.
-var PIPEDRIVE_FORM_ID = '31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf';
-var pipedriveLoadedSource = null;
-
-function injectPipedriveForm(source) {
-  var mount = document.getElementById('pipedrive-form-mount');
-  if (!mount) return;
-  // Skip re-render if the same source is already loaded
-  if (pipedriveLoadedSource === source && mount.querySelector('.pipedriveWebForms')) return;
-
-  mount.innerHTML = '';
-  var formDiv = document.createElement('div');
-  formDiv.className = 'pipedriveWebForms';
-  var url = 'https://webforms.pipedrive.com/f/' + PIPEDRIVE_FORM_ID + '?source=' + encodeURIComponent(source);
-  formDiv.setAttribute('data-pd-webforms', url);
-  mount.appendChild(formDiv);
-
-  // (Re-)load the Pipedrive loader script. Re-injecting forces it to scan
-  // the DOM and render the freshly-mounted form div.
-  var existing = document.getElementById('pipedrive-loader');
-  if (existing) existing.remove();
-  var s = document.createElement('script');
-  s.id = 'pipedrive-loader';
-  s.src = 'https://webforms.pipedrive.com/f/loader';
-  document.body.appendChild(s);
-
-  pipedriveLoadedSource = source;
-}
-
+// Pipedrive form is rendered once on page load (see modal markup).
+// We just toggle the dialog open. Source attribution intentionally
+// not wired (deferred to next build per Gabe).
 function openPartnerModal(evt, source) {
   if (evt && evt.preventDefault) evt.preventDefault();
   var modal = document.getElementById('partner-modal');
-  injectPipedriveForm(source || 'unknown');
   if (modal && typeof modal.showModal === 'function') {
     modal.showModal();
   } else if (modal) {
