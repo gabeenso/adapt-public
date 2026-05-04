@@ -1594,20 +1594,13 @@ footer {
     <p>Tell us a little about you. We'll be in touch within 1 business day to set up a 30-minute alignment call.</p>
   </div>
   <div class="partner-modal-body" id="partner-modal-body">
-    <!-- ============================================================
-         PIPEDRIVE WEB FORM MOUNT POINT
-         Replace the contents of this div with the embed snippet
-         from Pipedrive (Leads → Web Forms → Embed).
-         The data-source attribute below is auto-set from the CTA
-         that opened the modal — you can wire it to a hidden field
-         in the Pipedrive form by adding a custom field called
-         "source" and using the URL parameter pre-fill option.
-         ============================================================ -->
-    <div id="pipedrive-form-mount" data-source="">
-      <p style="font-size:14px; color:var(--text-mid); text-align:center; padding:20px 0;">
-        EOI form loading — replace this block with the Pipedrive embed snippet.
-      </p>
-    </div>
+    <!-- Pipedrive Web Form — injected lazily on modal open by openPartnerModal().
+         Form ID: 31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf
+         The CTA's data-cta value is appended as ?source=<value> to the form URL.
+         Pipedrive will capture this on submission only if the form has a custom
+         field configured to accept URL-parameter prefill — see Pipedrive form
+         designer → Field settings → Pre-fill from URL parameter. -->
+    <div id="pipedrive-form-mount"></div>
   </div>
 </dialog>
 
@@ -1625,15 +1618,41 @@ footer {
 })();
 
 // ===================== EOI MODAL =====================
-// Pipedrive Web Form is mounted inside #pipedrive-form-mount.
-// The data-source attribute is set from the CTA's data-cta value
-// for attribution in Pipedrive (wire it to a custom URL-prefilled
-// field in the form designer if you want it captured per-lead).
+// Lazily injects the Pipedrive Web Form embed on first open and re-injects
+// when the CTA source changes, so each lead carries its CTA attribution
+// via a ?source=<value> URL parameter on the form URL.
+var PIPEDRIVE_FORM_ID = '31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf';
+var pipedriveLoadedSource = null;
+
+function injectPipedriveForm(source) {
+  var mount = document.getElementById('pipedrive-form-mount');
+  if (!mount) return;
+  // Skip re-render if the same source is already loaded
+  if (pipedriveLoadedSource === source && mount.querySelector('.pipedriveWebForms')) return;
+
+  mount.innerHTML = '';
+  var formDiv = document.createElement('div');
+  formDiv.className = 'pipedriveWebForms';
+  var url = 'https://webforms.pipedrive.com/f/' + PIPEDRIVE_FORM_ID + '?source=' + encodeURIComponent(source);
+  formDiv.setAttribute('data-pd-webforms', url);
+  mount.appendChild(formDiv);
+
+  // (Re-)load the Pipedrive loader script. Re-injecting forces it to scan
+  // the DOM and render the freshly-mounted form div.
+  var existing = document.getElementById('pipedrive-loader');
+  if (existing) existing.remove();
+  var s = document.createElement('script');
+  s.id = 'pipedrive-loader';
+  s.src = 'https://webforms.pipedrive.com/f/loader';
+  document.body.appendChild(s);
+
+  pipedriveLoadedSource = source;
+}
+
 function openPartnerModal(evt, source) {
   if (evt && evt.preventDefault) evt.preventDefault();
   var modal = document.getElementById('partner-modal');
-  var mount = document.getElementById('pipedrive-form-mount');
-  if (mount) mount.setAttribute('data-source', source || 'unknown');
+  injectPipedriveForm(source || 'unknown');
   if (modal && typeof modal.showModal === 'function') {
     modal.showModal();
   } else if (modal) {
