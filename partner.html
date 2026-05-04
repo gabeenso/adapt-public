@@ -957,24 +957,29 @@ footer {
 .fit-check-mark span { color: var(--clementine); }
 
 /* ===================== PIPEDRIVE / EOI MODAL ===================== */
+/* Force the dialog hidden when not open — preserves UA default that we
+   inadvertently overrode when styling .partner-modal directly. Without this,
+   the modal renders inline on Squarespace's editor (no JS to hide it). */
+.partner-modal:not([open]) { display: none !important; }
 .partner-modal {
-  /* Center on viewport — UA defaults lost when styling dialog directly */
+  /* Sizing + appearance — only relevant when [open] */
   position: fixed;
   inset: 0;
   margin: auto;
-  /* Sizing */
   border: none;
   padding: 0;
   border-radius: 10px;
   max-width: 560px;
   width: calc(100% - 32px);
   max-height: 92vh;
-  /* Layout — header pinned, body scrolls */
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   background: white;
   box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+}
+.partner-modal[open] {
+  /* Apply flex layout only when open so the :not([open]) hide rule wins by default */
+  display: flex;
+  flex-direction: column;
 }
 .partner-modal::backdrop { background: rgba(30,16,24,0.7); backdrop-filter: blur(4px); }
 .partner-modal-head {
@@ -1594,7 +1599,7 @@ footer {
 <!-- ===================== EOI MODAL ===================== -->
 <dialog id="partner-modal" class="partner-modal" aria-labelledby="partner-modal-title">
   <div class="partner-modal-head">
-    <button class="partner-modal-close" aria-label="Close" onclick="document.getElementById('partner-modal').close()">×</button>
+    <button class="partner-modal-close" aria-label="Close" onclick="document.getElementById('partner-modal').close()">&times;</button>
     <h3 id="partner-modal-title">Express interest in the Adapt Partner Program</h3>
     <p>Tell us a little about you. We'll be in touch within 1 business day to set up a 30-minute alignment call.</p>
   </div>
