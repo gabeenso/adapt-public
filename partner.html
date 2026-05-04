@@ -1593,23 +1593,21 @@ footer {
     <h3 id="partner-modal-title">Express interest in the Adapt Partner Program</h3>
     <p>Tell us a little about you. We'll be in touch within 1 business day to set up a 30-minute alignment call.</p>
   </div>
-  <form class="partner-modal-body" id="partner-modal-form" novalidate>
-    <input type="hidden" name="source" id="partner-modal-source" value="">
-    <label for="partner-name">Name</label>
-    <input type="text" id="partner-name" name="name" required autocomplete="name">
-    <label for="partner-email">Email</label>
-    <input type="email" id="partner-email" name="email" required autocomplete="email">
-    <label for="partner-firm">Firm / company</label>
-    <input type="text" id="partner-firm" name="firm" autocomplete="organization">
-    <label for="partner-why">Why you want to join</label>
-    <textarea id="partner-why" name="why" rows="3" placeholder="A line or two on what you're hoping to do with Adapt."></textarea>
-    <button type="submit" class="partner-modal-submit">Send my expression of interest</button>
-    <p class="partner-modal-note">No obligation. We'll reply with next steps.</p>
-  </form>
-  <div class="partner-modal-success" id="partner-modal-success">
-    <h3>Thanks — we'll be in touch.</h3>
-    <p>Your expression of interest has landed. Expect a reply within 1 business day to schedule a 30-minute alignment call.</p>
-    <button type="button" class="partner-modal-submit" style="margin-top:20px;" onclick="document.getElementById('partner-modal').close()">Close</button>
+  <div class="partner-modal-body" id="partner-modal-body">
+    <!-- ============================================================
+         PIPEDRIVE WEB FORM MOUNT POINT
+         Replace the contents of this div with the embed snippet
+         from Pipedrive (Leads → Web Forms → Embed).
+         The data-source attribute below is auto-set from the CTA
+         that opened the modal — you can wire it to a hidden field
+         in the Pipedrive form by adding a custom field called
+         "source" and using the URL parameter pre-fill option.
+         ============================================================ -->
+    <div id="pipedrive-form-mount" data-source="">
+      <p style="font-size:14px; color:var(--text-mid); text-align:center; padding:20px 0;">
+        EOI form loading — replace this block with the Pipedrive embed snippet.
+      </p>
+    </div>
   </div>
 </dialog>
 
@@ -1627,15 +1625,15 @@ footer {
 })();
 
 // ===================== EOI MODAL =====================
+// Pipedrive Web Form is mounted inside #pipedrive-form-mount.
+// The data-source attribute is set from the CTA's data-cta value
+// for attribution in Pipedrive (wire it to a custom URL-prefilled
+// field in the form designer if you want it captured per-lead).
 function openPartnerModal(evt, source) {
   if (evt && evt.preventDefault) evt.preventDefault();
   var modal = document.getElementById('partner-modal');
-  var srcInput = document.getElementById('partner-modal-source');
-  var form = document.getElementById('partner-modal-form');
-  var success = document.getElementById('partner-modal-success');
-  if (srcInput) srcInput.value = source || 'unknown';
-  if (form) form.style.display = '';
-  if (success) success.classList.remove('show');
+  var mount = document.getElementById('pipedrive-form-mount');
+  if (mount) mount.setAttribute('data-source', source || 'unknown');
   if (modal && typeof modal.showModal === 'function') {
     modal.showModal();
   } else if (modal) {
@@ -1651,24 +1649,6 @@ document.addEventListener('click', function (e) {
   var inDialog = (e.clientX >= rect.left && e.clientX <= rect.right &&
                   e.clientY >= rect.top  && e.clientY <= rect.bottom);
   if (!inDialog) modal.close();
-});
-
-// Form submit — placeholder. Replace endpoint with real Pipedrive Web Form action or Leads API endpoint.
-document.getElementById('partner-modal-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var data = {
-    source: document.getElementById('partner-modal-source').value,
-    name:   document.getElementById('partner-name').value,
-    email:  document.getElementById('partner-email').value,
-    firm:   document.getElementById('partner-firm').value,
-    why:    document.getElementById('partner-why').value
-  };
-  // TODO: POST to Pipedrive Web Form action URL or your Leads API endpoint.
-  // Pipedrive Web Form: paste the form's <script src="..."> snippet just before </body>
-  // and bind this submit to its API, OR replace this fetch with the real endpoint.
-  console.log('[Adapt Partner EOI]', data);
-  document.getElementById('partner-modal-form').style.display = 'none';
-  document.getElementById('partner-modal-success').classList.add('show');
 });
 </script>
 
