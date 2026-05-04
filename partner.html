@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partner with Adapt — theadaptway.com/partners</title>
+<title>Partner with Adapt &mdash; theadaptway.com/partners</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
@@ -45,54 +45,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===================== NAV ===================== */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(250,250,248,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--mid-grey);
-  padding: 0 48px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ===================== SQUARESPACE WRAPPER RESET ===================== */
+/* Squarespace Code Block / section wrappers add padding we don't want on a
+   full-bleed full-page embed. Zero out all the common container classes so
+   the page starts flush under the Squarespace site nav with no gap and ends
+   flush at the bottom with no extra blank space. */
+.sqs-block-code,
+.sqs-block-code .sqs-block-content,
+.sqs-layout .sqs-row,
+.sqs-col-12,
+.page-section[data-section-theme] > .content-wrapper,
+[data-controller="PageSectionController"] .sqs-layout {
+  padding: 0 !important;
+  margin: 0 !important;
 }
-
-.nav-logo {
-  font-family: 'Lora', serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--clementine);
-  text-decoration: none;
-  letter-spacing: -0.3px;
-}
-.nav-logo em { color: var(--burgundy); font-style: normal; }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 32px;
-}
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-mid);
-  font-size: 14px;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text-dark); }
-.nav-cta {
-  background: var(--clementine) !important;
-  color: white !important;
-  padding: 10px 20px;
-  border-radius: 2px;
-  font-weight: 500 !important;
-  transition: background 0.2s !important;
-}
-.nav-cta:hover { background: #e0502b !important; }
 
 /* ===================== HERO ===================== */
 .hero {
@@ -200,7 +166,7 @@ nav {
 }
 .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
 
-/* Hero right — stat cards */
+/* Hero right &mdash; stat cards */
 .hero-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -407,7 +373,7 @@ nav {
   line-height: 1.5;
 }
 .pathway-feature-list li::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   color: var(--violet);
@@ -730,8 +696,8 @@ nav {
   position: relative;
   line-height: 1.5;
 }
-.fit-col.yes .fit-list li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 600; }
-.fit-col.no .fit-list li::before { content: '✗'; position: absolute; left: 0; color: var(--clementine); font-weight: 600; }
+.fit-col.yes .fit-list li::before { content: '\2713'; position: absolute; left: 0; color: var(--lime); font-weight: 600; }
+.fit-col.no .fit-list li::before { content: '\2717'; position: absolute; left: 0; color: var(--clementine); font-weight: 600; }
 
 /* ===================== CTA ===================== */
 .cta-section {
@@ -807,8 +773,7 @@ footer {
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 900px) {
-  nav { padding: 0 24px; }
-  .hero { padding: 100px 24px 60px; }
+  .hero { padding: 80px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; gap: 48px; }
   .hero h1 { font-size: 36px; }
   .section, .section-alt, .pathways-section,
@@ -852,21 +817,7 @@ footer {
   font-weight: 300;
 }
 
-/* ===================== DEMO BANNER ===================== */
-.demo-banner {
-  background: var(--gold-soft);
-  border-bottom: 1px solid rgba(243,149,67,0.2);
-  padding: 10px 24px;
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-mid);
-  font-weight: 400;
-  position: fixed;
-  top: 64px;
-  left: 0; right: 0;
-  z-index: 99;
-}
-.demo-banner strong { color: var(--gold); }
+/* .demo-banner removed &mdash; not used in Squarespace deployment */
 
 /* ===================== BENEFIT STATS (Harriet feedback) ===================== */
 .benefit-stat {
@@ -942,7 +893,7 @@ footer {
 .cta-band-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 @media (max-width: 900px) { .cta-band { padding: 48px 24px; } }
 
-/* ===================== FIT CHECK HEADING (lowercase italic Lora — TikTok riff) ===================== */
+/* ===================== FIT CHECK HEADING (lowercase italic Lora &mdash; TikTok riff) ===================== */
 .fit-check-mark {
   font-family: 'Lora', serif;
   font-style: italic;
@@ -957,12 +908,12 @@ footer {
 .fit-check-mark span { color: var(--clementine); }
 
 /* ===================== PIPEDRIVE / EOI MODAL ===================== */
-/* Force the dialog hidden when not open — preserves UA default that we
+/* Force the dialog hidden when not open &mdash; preserves UA default that we
    inadvertently overrode when styling .partner-modal directly. Without this,
    the modal renders inline on Squarespace's editor (no JS to hide it). */
 .partner-modal:not([open]) { display: none !important; }
 .partner-modal {
-  /* Sizing + appearance — only relevant when [open] */
+  /* Sizing + appearance &mdash; only relevant when [open] */
   position: fixed;
   inset: 0;
   margin: auto;
@@ -1042,7 +993,7 @@ footer {
 </head>
 <body>
 
-<!-- Custom nav removed — Squarespace site nav wraps the page on theadaptway.com/partners -->
+<!-- Custom nav removed &mdash; Squarespace site nav wraps the page on theadaptway.com/partners -->
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" style="padding-top:80px;">
@@ -1055,12 +1006,12 @@ footer {
       <div class="hero-eyebrow">Adapt Partner Program</div>
       <h1>Your expertise.<br><em>Stickier clients.</em><br>Revenue that compounds.</h1>
       <p class="hero-body">
-        Advisory businesses face a structural problem. You're good at what you do — but most of your revenue still depends on you being in the room. Projects end. Clients drift. The value of your firm is largely tied to hours you haven't worked yet.<br><br>
+        Advisory businesses face a structural problem. You're good at what you do &mdash; but most of your revenue still depends on you being in the room. Projects end. Clients drift. The value of your firm is largely tied to hours you haven't worked yet.<br><br>
         This is a real way to fix that.
       </p>
       <div class="hero-actions">
         <a href="#" class="btn-primary" data-cta="hero-primary" onclick="openPartnerModal(event,'hero-primary')">Book an alignment call</a>
-        <a href="#pathways" class="btn-secondary" data-cta="hero-secondary">Explore both pathways ↓</a>
+        <a href="#pathways" class="btn-secondary" data-cta="hero-secondary">Explore both pathways &#8595;</a>
       </div>
     </div>
 
@@ -1079,12 +1030,12 @@ footer {
           <div class="stat-label">Referral recognition fee paid per converted client. Both pathways.</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">20–25%</div>
+          <div class="stat-number">20&ndash;25%</div>
           <div class="stat-label">Recurring platform revenue share paid to you. No cap. No limit.</div>
         </div>
         <div class="stat-card accent">
           <div class="stat-number">"A genuine partnership built on trust, honesty and shared ambition."</div>
-          <div class="stat-label">— Kane Leersen, Founder, Regional Prosperity · Adapt Partner</div>
+          <div class="stat-label">&mdash; Kane Leersen, Founder, Regional Prosperity &middot; Adapt Partner</div>
         </div>
       </div>
     </div>
@@ -1123,19 +1074,19 @@ footer {
     </p>
     <div class="problem-grid">
       <div class="problem-item">
-        <div class="problem-icon">⇄</div>
+        <div class="problem-icon">&#8644;</div>
         <div class="problem-title">Handover</div>
         <div class="problem-body">The business still depends too heavily on the owner. There's no clean path to transition, and no system to hold what's currently in their head.</div>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">◎</div>
+        <div class="problem-icon">&#9678;</div>
         <div class="problem-title">Alignment</div>
         <div class="problem-body">The vision is clear to the owner. Their team has a different version. Decisions bottleneck, priorities drift, and advisory work doesn't stick.</div>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">↑</div>
+        <div class="problem-icon">&#8593;</div>
         <div class="problem-title">Scaling</div>
-        <div class="problem-body">Growth creates complexity. Complexity creates dependency. The owner gets pulled back in. The business grows — and gets harder to run, not easier.</div>
+        <div class="problem-body">Growth creates complexity. Complexity creates dependency. The owner gets pulled back in. The business grows &mdash; and gets harder to run, not easier.</div>
       </div>
     </div>
   </div>
@@ -1163,21 +1114,21 @@ footer {
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-title">Stickier client relationships</div>
-        <div class="benefit-body">Clients using the Adapt platform don't just get advice — they're anchored to a system that sustains progress. The longer they use it, the more valuable it becomes to them. And to you.</div>
+        <div class="benefit-body">Clients using the Adapt platform don't just get advice &mdash; they're anchored to a system that sustains progress. The longer they use it, the more valuable it becomes to them. And to you.</div>
         <!-- PENDING: replace placeholder with verified retention/engagement metric -->
-        <div class="benefit-stat" data-pending-verification>+X% client retention vs advisory-only baseline <em>· verifying</em></div>
+        <div class="benefit-stat" data-pending-verification>+X% client retention vs advisory-only baseline <em>&middot; verifying</em></div>
       </div>
       <div class="benefit-card">
         <div class="benefit-title">Recurring platform revenue</div>
         <div class="benefit-body">Earn a share of every platform subscription your clients pay. 20% from your first client, scaling to 25% as you grow. No cap. High margin.</div>
         <!-- PENDING: replace placeholder with real average ARR per partner -->
-        <div class="benefit-stat" data-pending-verification>$X average annual recurring revenue per Charter Partner <em>· verifying</em></div>
+        <div class="benefit-stat" data-pending-verification>$X average annual recurring revenue per Charter Partner <em>&middot; verifying</em></div>
       </div>
       <div class="benefit-card">
         <div class="benefit-title">More service revenue too</div>
-        <div class="benefit-body">Founding Partners have consistently seen an increase in service revenue alongside platform revenue — because the platform creates more opportunity to do meaningful advisory work.</div>
+        <div class="benefit-body">Founding Partners have consistently seen an increase in service revenue alongside platform revenue &mdash; because the platform creates more opportunity to do meaningful advisory work.</div>
         <!-- PENDING: replace placeholder with verified service revenue lift -->
-        <div class="benefit-stat" data-pending-verification>63% service revenue growth across 9 months <em>· verifying</em></div>
+        <div class="benefit-stat" data-pending-verification>63% service revenue growth across 9 months <em>&middot; verifying</em></div>
       </div>
       <div class="benefit-card">
         <div class="benefit-title">A partner portal that does the heavy lifting</div>
@@ -1211,7 +1162,7 @@ footer {
         <div class="pathway-card-header">
           <div class="pathway-badge">Alliance Partner</div>
           <div class="pathway-card-title">Open the right doors.<br>Earn as you go.</div>
-          <div class="pathway-card-subtitle">For trusted advisers with strong SME owner relationships who want to help clients with real problems — without changing their delivery model on day one.</div>
+          <div class="pathway-card-subtitle">For trusted advisers with strong SME owner relationships who want to help clients with real problems &mdash; without changing their delivery model on day one.</div>
         </div>
         <div class="pathway-card-body">
           <ul class="pathway-feature-list">
@@ -1228,7 +1179,7 @@ footer {
             <div class="investment-value">No cost to start</div>
             <div class="investment-note">Revenue recognised per qualified referral that converts</div>
           </div>
-          <a href="#" class="btn-pathway-alliance" data-cta="pathway-alliance" onclick="openPartnerModal(event,'pathway-alliance')">Express interest — Alliance</a>
+          <a href="#" class="btn-pathway-alliance" data-cta="pathway-alliance" onclick="openPartnerModal(event,'pathway-alliance')">Express interest &mdash; Alliance</a>
           <p class="pathway-note">Alliance is the starting point. Step up to Charter when the fit and momentum are proven.</p>
         </div>
       </div>
@@ -1244,12 +1195,12 @@ footer {
           <ul class="pathway-feature-list charter">
             <li>Deploy the Adapt platform and IP with your clients as part of your advisory offer</li>
             <li>~3 hours certification + 90-day activation roadmap with full support</li>
-            <li>Platform revenue share: 20% → 25% (by active client tier). No cap</li>
+            <li>Platform revenue share: 20% &#8594; 25% (by active client tier). No cap</li>
             <li>$1,000 referral recognition per Design engagement introduced</li>
             <li>Free Adapt platform instance for your own business (when thresholds met)</li>
             <li>Partner portal: marketing collateral, sales scripts, implementation guides</li>
-            <li>Dedicated Partner Success Lead — daily access, 24hr SLA</li>
-            <li>Charter community — peer learning with Founding + Charter Partners</li>
+            <li>Dedicated Partner Success Lead &mdash; daily access, 24hr SLA</li>
+            <li>Charter community &mdash; peer learning with Founding + Charter Partners</li>
             <li>Bi-annual strategy sessions + annual quality reviews</li>
             <li>You help shape the program before it scales broadly</li>
           </ul>
@@ -1258,7 +1209,7 @@ footer {
             <div class="investment-value">AUD $5,000</div>
             <div class="investment-note">Typically recovered within 6 months or less. Waived renewal at $2,000 if thresholds met.</div>
           </div>
-          <a href="#" class="btn-pathway-charter" data-cta="pathway-charter" onclick="openPartnerModal(event,'pathway-charter')">Express interest — Charter</a>
+          <a href="#" class="btn-pathway-charter" data-cta="pathway-charter" onclick="openPartnerModal(event,'pathway-charter')">Express interest &mdash; Charter</a>
           <p class="pathway-note"><span class="js-spots-remaining">20</span> spots for 2026. We're deliberate about who we bring in.</p>
         </div>
       </div>
@@ -1288,18 +1239,18 @@ footer {
           <tr>
             <td>Entry cost</td>
             <td class="adapt-col">$5,000</td>
-            <td>$61,000 – $151,000</td>
+            <td>$61,000 &ndash; $151,000</td>
             <td>$35,000</td>
           </tr>
           <tr>
             <td>Ongoing fees you pay them</td>
             <td class="adapt-col">$2,000/yr (waived at threshold)</td>
-            <td>$1,195 – $1,495/month</td>
+            <td>$1,195 &ndash; $1,495/month</td>
             <td>$16,500/yr</td>
           </tr>
           <tr>
             <td>They pay you recurring revenue</td>
-            <td class="adapt-col">Yes — 20% → 25% of platform revenue</td>
+            <td class="adapt-col">Yes &mdash; 20% &#8594; 25% of platform revenue</td>
             <td>No</td>
             <td>No</td>
           </tr>
@@ -1311,19 +1262,19 @@ footer {
           </tr>
           <tr>
             <td>You keep your service revenue</td>
-            <td class="adapt-col">100% — your pricing, your margin</td>
+            <td class="adapt-col">100% &mdash; your pricing, your margin</td>
             <td>Yes</td>
             <td>Yes</td>
           </tr>
           <tr>
             <td>Platform provided</td>
-            <td class="adapt-col">Yes — client-facing, holds the work</td>
+            <td class="adapt-col">Yes &mdash; client-facing, holds the work</td>
             <td>Separate subscription (EOS One)</td>
             <td>Third-party tools</td>
           </tr>
           <tr>
             <td>Dedicated support lead</td>
-            <td class="adapt-col">Yes — daily access, 24hr SLA</td>
+            <td class="adapt-col">Yes &mdash; daily access, 24hr SLA</td>
             <td>Group coaching calls</td>
             <td>Mentor system</td>
           </tr>
@@ -1331,21 +1282,21 @@ footer {
             <td>Payback on investment</td>
             <td class="adapt-col">6 months or less</td>
             <td>Typically 12+ months</td>
-            <td>Typically 6–12 months</td>
+            <td>Typically 6&ndash;12 months</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="compare-philosophy">
-      <p><strong>Why we do it this way.</strong> We believe the fastest way to help more SME owners is to empower the advisors who already have their trust. That means making this genuinely valuable for your business — not extracting maximum fees from you. Our goal is that our trusted partners help thousands of SME owners build more resilient businesses. We get there by making you successful, not by charging you more.</p>
+      <p><strong>Why we do it this way.</strong> We believe the fastest way to help more SME owners is to empower the advisors who already have their trust. That means making this genuinely valuable for your business &mdash; not extracting maximum fees from you. Our goal is that our trusted partners help thousands of SME owners build more resilient businesses. We get there by making you successful, not by charging you more.</p>
     </div>
 
-    <!-- PENDING: replace with verified ROI-led partner testimonial — make money / save money / save time -->
+    <!-- PENDING: replace with verified ROI-led partner testimonial &mdash; make money / save money / save time -->
     <div class="philosophy-testimonial">
       <p class="philosophy-testimonial-quote">"Working with the Adapt team, we've grown recurring revenue by [X%], cut our delivery time per client by [X hours], and converted [X] new advisory engagements directly off the platform. The model genuinely makes us more valuable to our clients."</p>
-      <p class="philosophy-testimonial-author">[Founding Partner — name pending approval]</p>
-      <p class="philosophy-testimonial-firm">[Firm name] · Adapt Charter Partner since 2024</p>
+      <p class="philosophy-testimonial-author">[Founding Partner &mdash; name pending approval]</p>
+      <p class="philosophy-testimonial-firm">[Firm name] &middot; Adapt Charter Partner since 2024</p>
     </div>
   </div>
 </section>
@@ -1355,36 +1306,36 @@ footer {
   <div class="section-inner" style="position:relative;z-index:1;">
     <div class="section-eyebrow" style="color:var(--clementine);">From the field</div>
     <h2 class="section-title">What Founding Partners say.</h2>
-    <p class="section-lead">Five advisory businesses helped us prove the model in 2024–25. These are their words.</p>
+    <p class="section-lead">Five advisory businesses helped us prove the model in 2024&ndash;25. These are their words.</p>
 
     <div class="testimonials">
       <div class="testimonial">
         <div class="testimonial-quote">"Our partnership with Adapt has been instrumental in shaping regional businesses into clear, values-led organisations built for sustainable growth. The Partner Program has strengthened how regional communities integrate leadership, people and structure."</div>
         <div class="testimonial-author">Kane Leersen</div>
-        <div class="testimonial-firm">Founder, Regional Prosperity · Adapt Partner</div>
-        <!-- PENDING: replace with concrete ROI metric — e.g. "MRR up X%", "X new advisory contracts in Y months" -->
-        <div class="testimonial-outcome">[Outcome metric pending — e.g. "Added $X in recurring platform revenue across 9 months."]</div>
+        <div class="testimonial-firm">Founder, Regional Prosperity &middot; Adapt Partner</div>
+        <!-- PENDING: replace with concrete ROI metric &mdash; e.g. "MRR up X%", "X new advisory contracts in Y months" -->
+        <div class="testimonial-outcome">[Outcome metric pending &mdash; e.g. "Added $X in recurring platform revenue across 9 months."]</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-quote">"Partnering with Adapt has been a genuine accelerator for People Squared. Their frameworks have expanded my offerings, opened new revenue pathways and lifted every engagement. Collaborative, transparent and genuinely true to their vision and values."</div>
         <div class="testimonial-author">Brendan Forewood</div>
-        <div class="testimonial-firm">Founder, People Squared · Adapt Charter Partner</div>
+        <div class="testimonial-firm">Founder, People Squared &middot; Adapt Charter Partner</div>
         <!-- PENDING: replace with concrete ROI metric -->
-        <div class="testimonial-outcome">[Outcome metric pending — e.g. "Lifted average engagement value by X%, opened 3 new client revenue pathways."]</div>
+        <div class="testimonial-outcome">[Outcome metric pending &mdash; e.g. "Lifted average engagement value by X%, opened 3 new client revenue pathways."]</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-quote">"It allowed us to move from a coaching/consulting model where we were hacking together various tools, to a much higher level of sophistication. Now all of our clients live in Adapt's platform, and it becomes our centre of truth."</div>
         <div class="testimonial-author">Unveil</div>
         <div class="testimonial-firm">Founding Partner since inception</div>
         <!-- PENDING: replace with concrete ROI metric -->
-        <div class="testimonial-outcome">[Outcome metric pending — e.g. "Cut tool sprawl, saved X hours per client, increased retention by Y%."]</div>
+        <div class="testimonial-outcome">[Outcome metric pending &mdash; e.g. "Cut tool sprawl, saved X hours per client, increased retention by Y%."]</div>
       </div>
       <div class="testimonial">
         <div class="testimonial-quote">"Our partnership with Adapt and Gabe is a game changer. The clarity and success our business has achieved in a short period of time as a result of the attention to culture, strategy, leadership, role clarity, accountability and governance is exceptional."</div>
         <div class="testimonial-author">Founding Partner</div>
-        <div class="testimonial-firm">Growth advisory firm · Adapt Partner</div>
+        <div class="testimonial-firm">Growth advisory firm &middot; Adapt Partner</div>
         <!-- PENDING: replace with concrete ROI metric -->
-        <div class="testimonial-outcome">[Outcome metric pending — e.g. "Recovered $X investment within Y months; team productivity up Z%."]</div>
+        <div class="testimonial-outcome">[Outcome metric pending &mdash; e.g. "Recovered $X investment within Y months; team productivity up Z%."]</div>
       </div>
     </div>
   </div>
@@ -1394,7 +1345,7 @@ footer {
 <!-- TODO 2026-11-04: review and update with real partner ARR data once Founding Partner numbers warrant publishing -->
 <section class="revenue-section">
   <div class="section-inner">
-    <div class="section-eyebrow">Charter Partner — revenue snapshot</div>
+    <div class="section-eyebrow">Charter Partner &mdash; revenue snapshot</div>
     <h2 class="section-title">What recurring revenue<br>actually looks like.</h2>
     <p class="section-lead">
       Platform revenue share is paid quarterly. No caps, no limits.
@@ -1402,7 +1353,7 @@ footer {
 
     <p style="font-size:14px; font-weight:500; color:var(--text-dark); margin-bottom:4px; letter-spacing:0.3px;">Average client ($500/month platform subscription)</p>
     <!-- PENDING: enable verified-stat line below once Q3/Q4 2026 partner data is in. Hide entirely if numbers don't show partners in best light. -->
-    <p style="display:none;font-size:13px;font-style:italic;color:var(--text-mid);margin-bottom:12px;" data-pending-verification>Sample partner generating $X average ARR · verified Q3 2026</p>
+    <p style="display:none;font-size:13px;font-style:italic;color:var(--text-mid);margin-bottom:12px;" data-pending-verification>Sample partner generating $X average ARR &middot; verified Q3 2026</p>
     <div class="revenue-table-wrap">
       <table class="revenue-table">
         <thead>
@@ -1442,9 +1393,9 @@ footer {
       </table>
     </div>
 
-    <p style="font-size:14px; font-weight:500; color:var(--text-dark); margin-bottom:4px; margin-top:32px; letter-spacing:0.3px;">Larger clients — 30+ employees ($1,000/month platform subscription)</p>
-    <!-- PENDING: same rule — hide unless numbers are strong. Update when verified partner data lands. -->
-    <p style="display:none;font-size:13px;font-style:italic;color:var(--text-mid);margin-bottom:12px;" data-pending-verification>Sample partner generating $X average ARR · verified Q3 2026</p>
+    <p style="font-size:14px; font-weight:500; color:var(--text-dark); margin-bottom:4px; margin-top:32px; letter-spacing:0.3px;">Larger clients &mdash; 30+ employees ($1,000/month platform subscription)</p>
+    <!-- PENDING: same rule &mdash; hide unless numbers are strong. Update when verified partner data lands. -->
+    <p style="display:none;font-size:13px;font-style:italic;color:var(--text-mid);margin-bottom:12px;" data-pending-verification>Sample partner generating $X average ARR &middot; verified Q3 2026</p>
     <div class="revenue-table-wrap">
       <table class="revenue-table">
         <thead>
@@ -1503,7 +1454,7 @@ footer {
       <div class="process-step">
         <div class="process-step-num">2</div>
         <div class="process-step-title">Alignment meeting</div>
-        <div class="process-step-body">A focused 30–45 minute conversation. We confirm fit, agree the right pathway, and walk through the agreement.</div>
+        <div class="process-step-body">A focused 30&ndash;45 minute conversation. We confirm fit, agree the right pathway, and walk through the agreement.</div>
       </div>
       <div class="process-step">
         <div class="process-step-num">3</div>
@@ -1525,7 +1476,7 @@ footer {
     <div class="cta-band-eyebrow">Alliance pathway</div>
     <h3 class="cta-band-title">Open the right doors. Earn as you go.</h3>
     <div class="cta-band-actions">
-      <a href="#" class="btn-primary" data-cta="mid-page-alliance" onclick="openPartnerModal(event,'mid-page-alliance')">Start now — from $0</a>
+      <a href="#" class="btn-primary" data-cta="mid-page-alliance" onclick="openPartnerModal(event,'mid-page-alliance')">Start now &mdash; from $0</a>
     </div>
   </div>
 </section>
@@ -1534,17 +1485,17 @@ footer {
 <section class="fit-section">
   <div class="section-inner">
     <div class="section-eyebrow">Fit check</div>
-    <div class="fit-check-mark"><span>·</span> fit check.</div>
+    <div class="fit-check-mark"><span>&middot;</span> fit check.</div>
     <h2 class="section-title">We're selective. Deliberately.</h2>
     <p class="section-lead">
-      This works when both parties show up properly. Here's what we're looking for — and what this is not for.
+      This works when both parties show up properly. Here's what we're looking for &mdash; and what this is not for.
     </p>
 
     <div class="fit-cols">
       <div class="fit-col yes">
         <div class="fit-col-header">Good fit</div>
         <ul class="fit-list">
-          <li>Advisory firm generating $1M–$5M in annual revenue</li>
+          <li>Advisory firm generating $1M&ndash;$5M in annual revenue</li>
           <li>Active database of 150+ SME owner relationships</li>
           <li>Already delivering strategy, leadership, or succession advisory</li>
           <li>Charging fair, premium fees ($10K+ engagements)</li>
@@ -1568,12 +1519,12 @@ footer {
 </section>
 
 <!-- ===================== MID-PAGE CTA BAND (below Fit Check) ===================== -->
-<section class="cta-band">
+<section class="cta-band" style="background: var(--off-white); border-top: 1px solid var(--mid-grey);">
   <div class="cta-band-inner">
-    <div class="cta-band-eyebrow">Charter pathway</div>
-    <h3 class="cta-band-title">Build recurring revenue. No lock-in.</h3>
+    <div class="cta-band-eyebrow" style="color: var(--clementine);">Charter pathway</div>
+    <h3 class="cta-band-title" style="color: var(--text-dark);">Build recurring revenue. No lock-in.</h3>
     <div class="cta-band-actions">
-      <a href="#" class="btn-primary" data-cta="mid-page-charter" onclick="openPartnerModal(event,'mid-page-charter')">Become a partner — no lock-in</a>
+      <a href="#" class="btn-primary" data-cta="mid-page-charter" onclick="openPartnerModal(event,'mid-page-charter')">Become a partner &mdash; no lock-in</a>
     </div>
   </div>
 </section>
@@ -1584,7 +1535,7 @@ footer {
     <div class="cta-eyebrow">Ready to explore this?</div>
     <h2 class="cta-title">Let's work out if this is the right fit.</h2>
     <p class="cta-body">
-      The alignment meeting is a straight conversation — no pitch, no pressure. We figure out whether Alliance or Charter is the right starting point, and whether both parties want to move forward.
+      The alignment meeting is a straight conversation &mdash; no pitch, no pressure. We figure out whether Alliance or Charter is the right starting point, and whether both parties want to move forward.
     </p>
     <div class="cta-actions">
       <a href="#" class="btn-primary" style="font-size:16px;padding:16px 32px;" data-cta="final-call" onclick="openPartnerModal(event,'final-call')">Book an alignment call</a>
@@ -1594,7 +1545,7 @@ footer {
   </div>
 </section>
 
-<!-- Custom footer removed — Squarespace site footer wraps the page -->
+<!-- Custom footer removed &mdash; Squarespace site footer wraps the page -->
 
 <!-- ===================== EOI MODAL ===================== -->
 <dialog id="partner-modal" class="partner-modal" aria-labelledby="partner-modal-title">
@@ -1604,7 +1555,7 @@ footer {
     <p>Tell us a little about you. We'll be in touch within 1 business day to set up a 30-minute alignment call.</p>
   </div>
   <div class="partner-modal-body" id="partner-modal-body">
-    <!-- Pipedrive Web Form — rendered once on page load by the loader script.
+    <!-- Pipedrive Web Form &mdash; rendered once on page load by the loader script.
          Modal open/close just toggles visibility; the form stays mounted. -->
     <div class="pipedriveWebForms" data-pd-webforms="https://webforms.pipedrive.com/f/31jU31xQmgQEVZI8Dpsh5yueQINpRbhW0A1DllDgxIt6z3P1p6bvzCdGg2doEv5Yf"></div>
     <script src="https://webforms.pipedrive.com/f/loader" async></script>
@@ -1638,7 +1589,7 @@ function openPartnerModal(evt, source) {
   }
 }
 
-// Close on backdrop click — listen on the dialog itself.
+// Close on backdrop click &mdash; listen on the dialog itself.
 // e.target === modal means the click was on the backdrop pseudo-element,
 // not on any child of the dialog. Avoids the bug where the click that
 // OPENED the modal (originating outside) immediately closed it.
@@ -1646,7 +1597,7 @@ document.getElementById('partner-modal').addEventListener('click', function (e) 
   if (e.target === this) this.close();
 });
 
-// Close button (×) in the modal head — keep wired regardless.
+// Close button (&times;) in the modal head &mdash; keep wired regardless.
 document.querySelectorAll('.partner-modal-close').forEach(function (btn) {
   btn.addEventListener('click', function () {
     document.getElementById('partner-modal').close();
