@@ -958,33 +958,55 @@ footer {
 
 /* ===================== PIPEDRIVE / EOI MODAL ===================== */
 .partner-modal {
+  /* Center on viewport — replaces UA defaults that we lose by styling dialog directly */
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  /* Sizing */
   border: none;
   padding: 0;
   border-radius: 8px;
-  max-width: 480px;
-  width: 92%;
+  max-width: 540px;
+  width: calc(100% - 32px);
+  max-height: min(90vh, 720px);
+  /* Layout — header fixed, body scrolls */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: white;
   box-shadow: 0 24px 80px rgba(0,0,0,0.4);
 }
 .partner-modal::backdrop { background: rgba(30,16,24,0.7); backdrop-filter: blur(4px); }
 .partner-modal-head {
-  padding: 28px 32px 16px;
+  flex: 0 0 auto;
+  padding: 22px 28px 18px;
   background: var(--burgundy);
   color: white;
   border-radius: 8px 8px 0 0;
   position: relative;
 }
 .partner-modal-head h3 {
-  font-family: 'Lora', serif; font-size: 22px; font-weight: 500; line-height: 1.2; margin-bottom: 6px;
+  font-family: 'Lora', serif; font-size: 19px; font-weight: 500; line-height: 1.25; margin-bottom: 4px;
+  padding-right: 28px;
 }
-.partner-modal-head p { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.5; }
+.partner-modal-head p { font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.5; }
 .partner-modal-close {
-  position: absolute; top: 16px; right: 16px;
+  position: absolute; top: 14px; right: 14px;
   background: transparent; border: none; color: rgba(255,255,255,0.5);
   font-size: 22px; cursor: pointer; line-height: 1;
 }
 .partner-modal-close:hover { color: white; }
-.partner-modal-body { padding: 24px 32px 32px; }
+.partner-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0;
+}
+/* Pipedrive form chrome — its container has its own padding,
+   so we don't add ours. These overrides trim Pipedrive's default
+   "Get in touch" heading + outer card border to reduce visual
+   redundancy with our modal head. */
+.partner-modal-body iframe { display: block; width: 100%; border: 0; }
 .partner-modal-body label {
   display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
   color: var(--text-mid); margin-bottom: 6px; margin-top: 16px;
