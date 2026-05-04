@@ -1660,14 +1660,19 @@ function openPartnerModal(evt, source) {
   }
 }
 
-// Close on backdrop click
-document.addEventListener('click', function (e) {
-  var modal = document.getElementById('partner-modal');
-  if (!modal || !modal.open) return;
-  var rect = modal.getBoundingClientRect();
-  var inDialog = (e.clientX >= rect.left && e.clientX <= rect.right &&
-                  e.clientY >= rect.top  && e.clientY <= rect.bottom);
-  if (!inDialog) modal.close();
+// Close on backdrop click — listen on the dialog itself.
+// e.target === modal means the click was on the backdrop pseudo-element,
+// not on any child of the dialog. Avoids the bug where the click that
+// OPENED the modal (originating outside) immediately closed it.
+document.getElementById('partner-modal').addEventListener('click', function (e) {
+  if (e.target === this) this.close();
+});
+
+// Close button (×) in the modal head — keep wired regardless.
+document.querySelectorAll('.partner-modal-close').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.getElementById('partner-modal').close();
+  });
 });
 </script>
 
